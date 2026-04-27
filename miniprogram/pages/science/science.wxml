@@ -1,0 +1,83 @@
+<!--pages/science/science.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">科学依据</text>
+    <text class="subtitle">VoiceHealth的理论基础与技术支撑</text>
+  </view>
+
+  <!-- Tabs -->
+  <view class="tabs">
+    <view class="tab {{activeTab === index ? 'active' : ''}}" 
+          wx:for="{{tabs}}" wx:key="index"
+          data-index="{{index}}" bindtap="switchTab">
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 理论基础 -->
+  <view class="content" wx:if="{{activeTab === 0}}">
+    <view class="theory-card" wx:for="{{theories}}" wx:key="index">
+      <text class="theory-icon">{{item.icon}}</text>
+      <text class="theory-title">{{item.title}}</text>
+      <text class="theory-desc">{{item.desc}}</text>
+    </view>
+  </view>
+
+  <!-- 学术文献 -->
+  <view class="content" wx:if="{{activeTab === 1}}">
+    <view class="paper-card" wx:for="{{papers}}" wx:key="index">
+      <text class="paper-title">{{item.title}}</text>
+      <text class="paper-journal">{{item.journal}} ({{item.year}})</text>
+      <view class="paper-doi" data-doi="{{item.doi}}" bindtap="copyDoi">
+        <text class="doi-label">DOI:</text>
+        <text class="doi-value">{{item.doi}}</text>
+        <text class="doi-copy">复制</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 技术原理 -->
+  <view class="content" wx:if="{{activeTab === 2}}">
+    <view class="tech-flow">
+      <view class="tech-step" wx:for="{{techDetails}}" wx:key="step">
+        <view class="step-number">{{item.step}}</view>
+        <view class="step-content">
+          <text class="step-title">{{item.title}}</text>
+          <text class="step-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 临床验证 -->
+  <view class="content" wx:if="{{activeTab === 3}}">
+    <view class="validation-card">
+      <view class="metric">
+        <text class="metric-value">{{validation.accuracy}}</text>
+        <text class="metric-label">准确率</text>
+      </view>
+      <view class="metric">
+        <text class="metric-value">{{validation.sensitivity}}</text>
+        <text class="metric-label">灵敏度</text>
+      </view>
+      <view class="metric">
+        <text class="metric-value">{{validation.specificity}}</text>
+        <text class="metric-label">特异度</text>
+      </view>
+    </view>
+    <view class="validation-info">
+      <view class="info-item">
+        <text class="info-label">样本数量</text>
+        <text class="info-value">{{validation.samples}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">检测疾病</text>
+        <text class="info-value">{{validation.diseases}}种</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="disclaimer">
+    * 以上数据基于公开学术研究，仅供参考
+  </view>
+</view>

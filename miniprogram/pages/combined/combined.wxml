@@ -1,0 +1,72 @@
+<!--pages/combined/combined.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">综合健康评估</text>
+    <text class="subtitle">声纹+面部双维度深度分析</text>
+  </view>
+
+  <!-- 数据源状态 -->
+  <view class="sources">
+    <view class="source-item {{hasVoice ? 'active' : ''}}">
+      <text class="source-icon">🎤</text>
+      <text class="source-name">声纹数据</text>
+      <text class="source-status">{{hasVoice ? '已采集' : '未采集'}}</text>
+    </view>
+    <view class="source-item {{hasFace ? 'active' : ''}}">
+      <text class="source-icon">📸</text>
+      <text class="source-name">面部数据</text>
+      <text class="source-status">{{hasFace ? '已采集' : '未采集'}}</text>
+    </view>
+  </view>
+
+  <!-- 开始分析 -->
+  <view class="action-section" wx:if="{{!showResult}}">
+    <button class="btn btn-primary btn-large" bindtap="startCombinedAnalysis" loading="{{isAnalyzing}}">
+      {{isAnalyzing ? '综合分析中...' : '开始综合评估'}}
+    </button>
+    <text class="action-hint">将综合声纹和面部数据，生成深度健康报告</text>
+  </view>
+
+  <!-- 分析结果 -->
+  <view class="result-section" wx:if="{{showResult && combinedResult}}">
+    <view class="overall-score">
+      <view class="score-ring" style="border-color: {{getScoreColor(combinedResult.overall_score)}}">
+        <text class="score-number">{{combinedResult.overall_score}}</text>
+        <text class="score-text">综合评分</text>
+      </view>
+      <view class="age-ring">
+        <text class="age-number">{{combinedResult.biological_age}}</text>
+        <text class="age-text">生物学年龄</text>
+      </view>
+    </view>
+
+    <view class="dimensions-card">
+      <text class="card-title">六维健康指标</text>
+      <view class="dimensions-grid">
+        <view class="dimension" wx:for="{{combinedResult.dimensions}}" wx:key="name">
+          <text class="dim-icon">{{item.icon}}</text>
+          <text class="dim-name">{{item.name}}</text>
+          <view class="dim-score" style="color: {{getScoreColor(item.score)}}">{{item.score}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="summary-card">
+      <text class="card-title">综合分析</text>
+      <text class="summary-text">{{combinedResult.summary}}</text>
+    </view>
+
+    <view class="suggestions-card">
+      <text class="card-title">健康建议</text>
+      <view class="suggestion" wx:for="{{combinedResult.suggestions}}" wx:key="index">
+        <text class="suggestion-num">{{index + 1}}</text>
+        <text class="suggestion-text">{{item}}</text>
+      </view>
+    </view>
+
+    <view class="result-actions">
+      <button class="btn btn-ghost" bindtap="goHome">返回首页</button>
+      <button class="btn btn-primary" open-type="share">分享报告</button>
+    </view>
+  </view>
+</view>
