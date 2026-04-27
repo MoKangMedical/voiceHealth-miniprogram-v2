@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="card">
+    <text class="card-title">健康报告</text>
+    <text>报告ID: {{reportId}}</text>
+  </view>
+</view>

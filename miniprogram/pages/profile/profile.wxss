@@ -1,0 +1,5 @@
+.container { padding: 32rpx; min-height: 100vh; }
+.profile-header { text-align: center; padding: 40rpx 0; }
+.avatar { width: 120rpx; height: 120rpx; border-radius: 50%; }
+.nickname { display: block; font-size: 32rpx; font-weight: 600; margin-top: 16rpx; }
+.vip-badge { display: inline-block; padding: 8rpx 24rpx; background: linear-gradient(135deg, #eab308, #f59e0b); border-radius: 20rpx; font-size: 24rpx; color: #000; margin-top: 12rpx; }

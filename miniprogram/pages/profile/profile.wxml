@@ -1,0 +1,7 @@
+<view class="container">
+  <view class="profile-header">
+    <image class="avatar" src="{{userInfo.avatarUrl}}" wx:if="{{userInfo}}"/>
+    <text class="nickname">{{userInfo.nickName || '未登录'}}</text>
+    <view class="vip-badge" wx:if="{{isVip}}">VIP会员</view>
+  </view>
+</view>
