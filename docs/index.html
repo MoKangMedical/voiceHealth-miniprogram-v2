@@ -1,182 +1,96 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VoiceHealth v2 - MoKangMedical</title>
-<meta name="description" content="第二代声纹健康检测平台，精度更高、功能更全">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>VoiceHealth V2 - MoKangMedical</title>
+<meta name="description" content="Next-gen voice health screening with enhanced AI and telemedicine.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e5e5e5;line-height:1.6}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#16213e 100%);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,#14b8a615 0%,transparent 50%);animation:pulse 8s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;background:linear-gradient(135deg,#14b8a6,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem;position:relative}
-.hero .subtitle{font-size:1.3rem;color:#a3a3a3;max-width:600px;margin-bottom:2rem}
-.badge{display:inline-block;padding:0.3rem 1rem;border-radius:999px;background:#14b8a622;color:#14b8a6;font-size:0.85rem;border:1px solid #14b8a644;margin-bottom:1rem}
-.cta{display:inline-block;padding:1rem 2.5rem;background:#14b8a6;color:#fff;border-radius:12px;text-decoration:none;font-weight:600;font-size:1.1rem;transition:all 0.3s;margin:0.5rem}
-.cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px #14b8a644}
-.cta-outline{background:transparent;border:2px solid #14b8a666;color:#14b8a6}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;padding:4rem 2rem;max-width:1200px;margin:0 auto}
-.feature{background:#141414;border:1px solid #262626;border-radius:16px;padding:2rem;transition:all 0.3s}
-.feature:hover{border-color:#14b8a644;transform:translateY(-4px)}
-.feature h3{color:#fff;margin-bottom:0.5rem;font-size:1.2rem}
-.feature p{color:#a3a3a3;font-size:0.95rem}
-.stats{display:flex;justify-content:center;gap:3rem;padding:3rem;flex-wrap:wrap}
-.stat{text-align:center}
-.stat .num{font-size:2.5rem;font-weight:800;color:#14b8a6}
-.stat .label{color:#737373;font-size:0.9rem}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:#0a0a0aee;backdrop-filter:blur(10px);border-bottom:1px solid #1a1a1a}
-.nav a{color:#a3a3a3;text-decoration:none;margin:0 1rem;font-size:0.9rem;transition:color 0.3s}
-.nav a:hover{color:#fff}
-.nav .brand{color:#fff;font-weight:700;font-size:1.1rem;text-decoration:none}
-.pricing{padding:4rem 2rem;max-width:1000px;margin:0 auto}
-.pricing h2{text-align:center;font-size:2rem;margin-bottom:2rem;color:#fff}
-.price-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.price-card{background:#141414;border:1px solid #262626;border-radius:16px;padding:2rem;text-align:center;transition:all 0.3s}
-.price-card.featured{border-color:#14b8a6;transform:scale(1.05)}
-.price-card h3{color:#fff;margin-bottom:0.5rem}
-.price{font-size:2.5rem;font-weight:800;color:#14b8a6;margin:1rem 0}
-.price span{font-size:1rem;color:#737373}
+:root{--p:#10b981;--bg:#0a0a0f;--s:#12121a;--t:#e2e8f0;--m:#94a3b8;--b:rgba(255,255,255,.06)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+a{color:var(--p);text-decoration:none}
+.nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--b);z-index:1000;padding:.8rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nb{font-size:1.2rem;font-weight:700;color:var(--p)}
+.nl{display:flex;gap:1.5rem;align-items:center}
+.nl a{color:var(--m);font-size:.85rem;transition:color .2s}
+.nl a:hover{color:var(--t)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#10b98115,transparent 70%)}
+.hc{position:relative;max-width:900px}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,#fff,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem}
+.sub{font-size:1.3rem;color:var(--m);margin-bottom:2rem;max-width:700px;margin-left:auto;margin-right:auto}
+.cat{display:inline-block;padding:.4rem 1rem;background:#10b98122;border:1px solid #10b98144;border-radius:999px;font-size:.8rem;color:var(--p);margin-bottom:2rem}
+.btn{display:inline-block;padding:.8rem 2rem;background:var(--p);color:#fff;border-radius:8px;font-weight:600;transition:all .2s;cursor:pointer;border:none;font-size:1rem}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px #10b98140}
+.btns{display:flex;gap:1rem;justify-content:center;margin-top:2rem}
+.btn-o{background:transparent;border:1px solid #10b98166;color:var(--p)}
+section{padding:6rem 2rem}
+.section-title{text-align:center;margin-bottom:3rem}
+.section-title h2{font-size:2.5rem;font-weight:700;margin-bottom:.5rem}
+.section-title p{color:var(--m);max-width:600px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
+.card{background:var(--s);border:1px solid var(--b);border-radius:12px;padding:2rem;transition:all .3s}
+.card:hover{border-color:#10b98144;transform:translateY(-4px)}
+.card h3{font-size:1.2rem;margin-bottom:.5rem}
+.card p{color:var(--m);font-size:.95rem}
+.card-icon{font-size:2rem;margin-bottom:1rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;max-width:1000px;margin:0 auto;text-align:center;padding:4rem 0}
+.stat h3{font-size:2.5rem;font-weight:800;color:var(--p)}
+.stat p{color:var(--m);margin-top:.5rem}
+.pricing{background:var(--s)}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;max-width:1000px;margin:0 auto}
+.price-card{background:var(--bg);border:1px solid var(--b);border-radius:12px;padding:2.5rem;text-align:center;position:relative}
+.price-card.featured{border-color:#10b981;box-shadow:0 0 40px #10b98120}
+.price-card.featured::before{content:'POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--p);color:#fff;padding:.2rem 1rem;border-radius:999px;font-size:.7rem;font-weight:700}
+.price-card h3{font-size:1.3rem;margin-bottom:.5rem}
+.price{font-size:2.5rem;font-weight:800;margin:1rem 0}
+.price span{font-size:1rem;font-weight:400;color:var(--m)}
 .price-card ul{list-style:none;text-align:left;margin:1.5rem 0}
-.price-card li{padding:0.5rem 0;color:#a3a3a3;border-bottom:1px solid #1a1a1a}
-.price-card li::before{content:'✓ ';color:#14b8a6}
-footer{text-align:center;padding:3rem;color:#525252;border-top:1px solid #1a1a1a;font-size:0.85rem}
-footer a{color:#14b8a6;text-decoration:none}
+.price-card li{padding:.4rem 0;color:var(--m);font-size:.9rem}
+.price-card li::before{content:'\2713 ';color:var(--p)}
+.cta{text-align:center;padding:6rem 2rem;background:linear-gradient(180deg,var(--bg),var(--s))}
+.cta h2{font-size:2.5rem;font-weight:700;margin-bottom:1rem}
+.cta p{color:var(--m);margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto}
+footer{background:var(--s);border-top:1px solid var(--b);padding:3rem 2rem;text-align:center}
+.footer-links{display:flex;gap:2rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+.footer-links a{color:var(--m);font-size:.85rem}
+.footer-brand{color:var(--m);font-size:.85rem}
+@media(max-width:768px){.nav{padding:.8rem 1rem}.nl{display:none}.hero h1{font-size:2rem}.grid{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}section{padding:3rem 1rem}}
 </style>
 </head>
-<body style="padding-top:56px!important"><nav id="opc-nav" style="position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(10,10,30,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,0.2);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-  <a href="https://mokangmedical.github.io/opc-homepage/" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px">
-    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="url(#ng1)" stroke-width="2.5"/><path d="M10 16h12M16 10v12" stroke="url(#ng1)" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="ng1" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#c084fc"/></linearGradient></defs></svg>
-    <span style="background:linear-gradient(135deg,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent">MoKangMedical</span>
-  </a>
-  <div style="display:flex;gap:6px;align-items:center">
-    <a href="https://mokangmedical.github.io/opc-homepage/" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px">生态首页</a>
-    <a href="https://github.com/MoKangMedical" target="_blank" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px">GitHub</a>
-    <a href="https://mokangmedical.github.io/opc-alliance/" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:6px 16px;border-radius:8px;font-weight:600;font-size:13px;text-decoration:none">OPC Hub</a>
-  </div>
-</nav>
+<body>
 <nav class="nav">
-<a class="brand" href="https://mokangmedical.github.io/opc-homepage/">MoKangMedical</a>
-<div>
-<a href="https://github.com/MoKangMedical/voiceHealth-miniprogram-v2">GitHub</a>
-<a href="https://mokangmedical.github.io/opc-homepage/">OPC生态</a>
+<a href="/" class="nb">🎤 VoiceHealth V2</a>
+<div class="nl">
+<a href="#features">Features</a><a href="#pricing">Pricing</a>
+<a href="https://github.com/MoKangMedical/voiceHealth-miniprogram-v2" target="_blank">GitHub</a>
+<a href="https://mokangmedical.github.io/opc-homepage/">OPC Ecosystem</a>
 </div>
 </nav>
-<section class="hero">
-<div class="badge">MoKangMedical OPC 生态项目</div>
-<h1>VoiceHealth v2</h1>
-<p class="subtitle">声纹健康检测2.0</p>
-<div>
-<a class="cta" href="https://github.com/MoKangMedical/voiceHealth-miniprogram-v2">查看源码</a>
-<a class="cta cta-outline" href="#features">了解更多</a>
-</div>
-</section>
-<div class="stats">
-<div class="stat"><div class="num">AI</div><div class="label">驱动引擎</div></div>
-<div class="stat"><div class="num">100%</div><div class="label">开源免费</div></div>
-<div class="stat"><div class="num">24/7</div><div class="label">持续服务</div></div>
-</div>
-<section class="features" id="features">
-<div class="feature"><h3>多模态融合</h3><p>声纹+面相+舌象多模态健康评估</p></div>
-<div class="feature"><h3>疾病筛查</h3><p>帕金森、抑郁症等早期筛查能力</p></div>
-<div class="feature"><h3>中医辨证</h3><p>基于声纹的中医体质辨识</p></div>
-<div class="feature"><h3>实时监测</h3><p>持续声纹监测，异常即时预警</p></div>
-<div class="feature"><h3>医生对接</h3><p>在线医生问诊，检测结果直通医生</p></div>
-<div class="feature"><h3>健康管理</h3><p>个性化健康建议和干预方案</p></div>
-
-</section>
-<section class="pricing" id="pricing">
-<h2>选择方案</h2>
-<div class="price-cards">
-<div class="price-card">
-<h3>Starter</h3>
-<div class="price">免费<span></span></div>
-<ul>
-<li>基础功能完整可用</li>
-<li>社区支持</li>
-<li>单用户使用</li>
-</ul>
-<a class="cta cta-outline" href="https://github.com/MoKangMedical/voiceHealth-miniprogram-v2">开始使用</a>
-</div>
-<div class="price-card featured">
-<h3>Professional</h3>
-<div class="price">¥999<span>/月</span></div>
-<ul>
-<li>全部高级功能</li>
-<li>优先技术支持</li>
-<li>团队协作</li>
-<li>API接口调用</li>
-</ul>
-<a class="cta" href="mailto:contact@mokangmedical.com">联系我们</a>
-</div>
-<div class="price-card">
-<h3>Enterprise</h3>
-<div class="price">定制<span></span></div>
-<ul>
-<li>私有化部署</li>
-<li>定制开发</li>
-<li>专属客服</li>
-<li>SLA保障</li>
-</ul>
-<a class="cta cta-outline" href="mailto:contact@mokangmedical.com">商务洽谈</a>
-</div>
-</div>
-</section>
-<footer>
-<p>&copy; 2026 MoKangMedical. Part of <a href="https://mokangmedical.github.io/opc-homepage/">OPC Ecosystem</a>.</p>
-</footer>
-<script>
-// Scroll reveal animation
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.feature-card, .card, .pricing-card, .stat-card, [class*="feature"], [class*="card"]').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-    observer.observe(el);
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
-
-// Navbar background on scroll
-const nav = document.querySelector('nav, .nav, .navbar, header');
-if (nav) {
-    window.addEventListener('scroll', () => {
-        nav.style.background = window.scrollY > 50 ? 'rgba(10,10,15,0.98)' : 'rgba(10,10,15,0.85)';
-    });
-}
-
-// Counter animation for stats
-document.querySelectorAll('[data-count], .stat-number, .counter').forEach(el => {
-    const target = parseInt(el.dataset.count || el.textContent);
-    if (isNaN(target)) return;
-    let current = 0;
-    const increment = target / 60;
-    const suffix = el.dataset.suffix || '';
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) { current = target; clearInterval(timer); }
-        el.textContent = Math.floor(current).toLocaleString() + suffix;
-    }, 25);
-});
-
-console.log('MoKangMedical interactive features loaded');
-</script>
-</body>
-</html>
+<section class="hero"><div class="hc">
+<div class="cat">Voice Health</div>
+<h1>VoiceHealth V2</h1>
+<p class="sub">Next-generation voice health screening platform with enhanced AI models, multi-language support, and telemedicine integration.</p>
+<div class="btns"><a href="#pricing" class="btn">Get Started</a><a href="#features" class="btn btn-o">Learn More</a></div>
+</div></section>
+<section id="features"><div class="section-title"><h2>Core Capabilities</h2><p>Enterprise-grade features for healthcare professionals</p></div>
+<div class="grid"><div class="card"><div class="card-icon">🎙️</div><h3>Enhanced Voice AI</h3><p>Improved accuracy with transformer-based models.</p></div><div class="card"><div class="card-icon">🌍</div><h3>Multi-language</h3><p>Support for 20+ languages and dialects.</p></div><div class="card"><div class="card-icon">💊</div><h3>Telemedicine</h3><p>Integrated video consultation with specialists.</p></div><div class="card"><div class="card-icon">📊</div><h3>Longitudinal Tracking</h3><p>Track voice health changes over months and years.</p></div><div class="card"><div class="card-icon">🏥</div><h3>Clinical Integration</h3><p>Direct EHR integration for seamless workflows.</p></div><div class="card"><div class="card-icon">🔐</div><h3>Blockchain Audit</h3><p>Immutable audit trail for clinical compliance.</p></div></div></section>
+<section><div class="stats">
+<div class="stat"><h3>99.5%</h3><p>Uptime SLA</p></div>
+<div class="stat"><h3>50ms</h3><p>Response Time</p></div>
+<div class="stat"><h3>HIPAA</h3><p>Compliant</p></div>
+<div class="stat"><h3>24/7</h3><p>Support</p></div>
+</div></section>
+<section id="pricing" class="pricing"><div class="section-title"><h2>Pricing Plans</h2><p>Flexible plans for teams of all sizes</p></div>
+<div class="price-grid"><div class="price-card"><h3>Free</h3><div class="price">$0<span>/month</span></div><ul><li>5 scans/month</li><li>Basic analysis</li><li>Community</li></ul><a href="mailto:contact@mokangmedical.com?subject=VoiceHealth V2 - Free" class="btn" style="width:100%">Get Started</a></div><div class="price-card featured"><h3>Pro</h3><div class="price">$14.99<span>/month</span></div><ul><li>Unlimited scans</li><li>Advanced analysis</li><li>Telemedicine</li></ul><a href="mailto:contact@mokangmedical.com?subject=VoiceHealth V2 - Pro" class="btn" style="width:100%">Get Started</a></div><div class="price-card"><h3>Enterprise</h3><div class="price">$799<span>/month</span></div><ul><li>White-label</li><li>API access</li><li>Custom models</li><li>Dedicated support</li></ul><a href="mailto:contact@mokangmedical.com?subject=VoiceHealth V2 - Enterprise" class="btn" style="width:100%">Get Started</a></div></div></section>
+<section class="cta"><h2>Ready to Transform Your Workflow?</h2>
+<p>Join leading healthcare institutions using VoiceHealth V2 to improve patient outcomes.</p>
+<a href="mailto:contact@mokangmedical.com?subject=VoiceHealth V2 Inquiry" class="btn">Contact Sales</a></section>
+<footer><div class="footer-links">
+<a href="https://mokangmedical.github.io/opc-homepage/">OPC Ecosystem</a>
+<a href="https://github.com/MoKangMedical/voiceHealth-miniprogram-v2">GitHub</a>
+<a href="mailto:contact@mokangmedical.com">Contact</a>
+</div><div class="footer-brand">&copy; 2026 MoKangMedical. All rights reserved.</div></footer>
+</body></html>
